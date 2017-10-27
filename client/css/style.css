@@ -15,3 +15,81 @@ body {
 img {
     width: 100%;
 }
+
+.clearfix:after, .clearfix:before {
+    content: "";
+    display: table
+}
+
+.clearfix:after {
+    clear: both
+}
+
+.page__wrapper {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.page__inner {
+    width: 740px;
+    height: 560px;
+    margin: 0 auto;
+}
+
+.friends,
+.chat {
+    float: left;
+}
+.friends {
+    width: 200px;
+    height: 100%;
+    overflow: auto;
+    background: #4d394b;
+    color: #939393;
+}
+
+.chat {
+    width: 540px;
+    height: 100%;
+    background: #fff;
+}
+
+.comments {
+    width: 100%;
+    height: 510px;
+    background: #ccc;
+}
+.comment__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    height: 100%;
+    overflow: auto;
+}
+.comment__item {
+    padding: 10px;
+    background: #fff;
+}
+.comment__image {
+    float: left;
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.comment__content {
+    float: left;
+    margin-left: 10px;
+}
+
+.message {
+    height: 50px;
+    padding: 10px;
+}
+.message__input {
+    width: 100%;
+    height: 100%;
+    padding: 0 5px;
+    outline: 0;
+}
