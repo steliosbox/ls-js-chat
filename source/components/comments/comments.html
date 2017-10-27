@@ -1,0 +1,21 @@
+<div class="comments__wrapper">
+    <div class="comments">
+        <ul class="comments__list">
+            <li class="comments__item clearfix" v-for="item in list">
+                <div class="comments__image">
+                    <img src="img/avatar.png" alt="">
+                </div>
+                <div class="comments__content">
+                    <div class="comments__title">
+                        <span class="comments__author">{{ item.username }}</span>
+                        <span class="comments__time">time</span>
+                    </div>
+                    <div class="comments__message">message</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="message">
+        <input type="text" class="message__input" placeholder="Type a message..." v-on:keypress="submitMessage"/>
+    </div>
+</div>

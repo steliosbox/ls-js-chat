@@ -1,0 +1,27 @@
+.comments {
+    width: 100%;
+    height: 510px;
+    background: #ccc;
+}
+.comments__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    height: 100%;
+    overflow: auto;
+}
+.comments__item {
+    padding: 10px;
+    background: #fff;
+}
+.comments__image {
+    float: left;
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.comments__content {
+    float: left;
+    margin-left: 10px;
+}

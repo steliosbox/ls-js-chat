@@ -13,8 +13,9 @@ const paths = {
     source: './source',
     dest: './clieny',
     scripts: {
-        src: './source/js/**/*.js',
-        dest: 'client/js/'
+        watch: ['./source/**/*.js', './source/components/**/*.*'],
+        src: './source/**/*.js',
+        dest: 'client/js'
     },
     styles: {
         src: './source/scss/**/*.scss',
@@ -47,11 +48,11 @@ gulp.task('styles', () => {
         .pipe(gulp.dest(paths.styles.dest))
 });
 
-gulp.task('server', function () {
+gulp.task('server', () => {
 
     if (node) node.kill();
     node = spawn('node', ['server.js'], { stdio: 'inherit' });
-    node.on('close', function (code) {
+    node.on('close', (code) => {
 
         if (code === 8) {
             gulp.log('Error detected, waiting for changes...');
@@ -59,15 +60,15 @@ gulp.task('server', function () {
     });
 });
 
-gulp.task('default', ['server'], function() {
+gulp.task('default', ['server'], () => {
 
     gulp.watch(paths.server.src, ['server']);
-    gulp.watch(paths.scripts.src, ['scripts']);
+    gulp.watch(paths.scripts.watch, ['scripts']);
     gulp.watch(paths.styles.src, ['styles']);
 });
 
 // clean up if an error goes unhandled.
-process.on('exit', function () {
+process.on('exit', () => {
 
     if (node) node.kill();
 });

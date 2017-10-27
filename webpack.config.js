@@ -20,12 +20,23 @@ const config = {
                         presets: ['env']
                     }
                 }
+            },
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader',
             }
         ]
     },
 
     plugins: [
-        new UglifyJSPlugin()
+        new webpack.LoaderOptionsPlugin({
+            vue: {
+                loaders: {
+                    scss: 'style-loader!css-loader!sass-loader'
+                }
+            },
+        }),
+        // new UglifyJSPlugin()
     ]
 };
 

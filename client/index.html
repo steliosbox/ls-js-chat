@@ -19,29 +19,12 @@
                         <li class="friends__item">Name Lastname</li>
                     </ul>
                 </aside>
-                <main class="chat">
-                    <div class="comments">
-                        <ul class="comment__list" v-for="item in list" v-bind:id="item.time">
-                            <li class="comment__item clearfix">
-                                <div class="comment__image">
-                                    <img src="img/avatar.png" alt="">
-                                </div>
-                                <div class="comment__content">
-                                    <div class="comment__title">
-                                        <span class="comment__author">{{item.username}}</span>
-                                        <span class="comment__time">{{item.time}}</span>
-                                    </div>
-                                    <div class="comment__message">{{item.message}}</div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="message">
-                        <input type="text" class="message__input" placeholder="Type a message..."/>
-                    </div>
+                <main class="chat" id="comments">
+                    <comments></comments>
                 </main>
             </div>
         </div>
+        <script src="https://unpkg.com/vue"></script>
         <script type="text/javascript" src="js/main.bundle.js"></script>
     </body>
 </html>
