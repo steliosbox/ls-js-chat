@@ -50,6 +50,15 @@ export default {
                         this.typingFunc(result.username);
                     }
                     break;
+
+                case 'data':
+
+                    result.message.forEach(corrent => {
+
+                        this.list.push(corrent);
+                        this.scrollTop();
+                    })
+                    break;
             }
         },
 

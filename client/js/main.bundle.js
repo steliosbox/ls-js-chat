@@ -1083,6 +1083,15 @@ module.exports = function (css) {
                         this.typingFunc(result.username);
                     }
                     break;
+
+                case 'data':
+
+                    result.message.forEach(corrent => {
+
+                        this.list.push(corrent);
+                        this.scrollTop();
+                    });
+                    break;
             }
         },
 
@@ -1431,6 +1440,7 @@ exports.default = {
 
     methods: {
         messageType: function messageType(messageData) {
+            var _this2 = this;
 
             var result = JSON.parse(messageData);
 
@@ -1452,25 +1462,34 @@ exports.default = {
                         this.typingFunc(result.username);
                     }
                     break;
+
+                case 'data':
+
+                    result.message.forEach(function (corrent) {
+
+                        _this2.list.push(corrent);
+                        _this2.scrollTop();
+                    });
+                    break;
             }
         },
         typingFunc: function typingFunc(username) {
-            var _this2 = this;
+            var _this3 = this;
 
             clearTimeout(this.timer);
 
             this.typing = username + ' is typing ...';
             this.timer = setTimeout(function () {
 
-                _this2.typing = '';
+                _this3.typing = '';
             }, 1000);
         },
         scrollTop: function scrollTop() {
-            var _this3 = this;
+            var _this4 = this;
 
             this.$nextTick(function () {
 
-                var elem = _this3.$el.querySelector('.comments__list');
+                var elem = _this4.$el.querySelector('.comments__list');
                 elem.scrollTop = elem.scrollHeight;
             });
         },

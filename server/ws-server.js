@@ -1,3 +1,6 @@
+let Mysql = require('./my_modules/mysql.js')
+let mysql = new Mysql();
+
 module.exports = class {
 
     constructor(wss) {
@@ -37,6 +40,18 @@ module.exports = class {
                 socket.username = result.username;
 
                 this._onlineStatus(result.username);
+
+                mysql.query('SELECT * FROM messages') //  ORDER BY time DESC LIMIT 3
+                    .then(result => result)
+                    .catch(error => error.code)
+                    .then(array => {
+
+                        this.sendToSelf(socket, {type: 'data', message: array});
+                    });
+
+            } else if (result.type === 'message') {
+
+                this._saveToDB(result);
             }
 
             this.broadcast(JSON.stringify(result));
@@ -85,6 +100,30 @@ module.exports = class {
         });
     }
 
+    sendToSelf(socket, data) {
+
+        if(typeof data !== 'string') {
+
+            data = JSON.stringify(data);
+        }
+
+        this._send(socket, data);
+    }
+
+    _saveToDB(data) {
+
+        let { message, time, username } = data;
+
+        mysql.query('INSERT INTO messages (username, message, time) VALUES ("' + username + '", "' + message + '", "' + time + '")')
+        .then(result => result)
+        .catch(error => error.code)
+        .then(status => {
+
+            console.log(status);
+        });
+    }
+
+
     _onlineStatus(username) {
 
         this.broadcast(JSON.stringify({
@@ -94,9 +133,9 @@ module.exports = class {
         }));
     }
 
-    _send(socket, dataMessage) {
+    _send(socket, data) {
         // send message to clients
-        socket.send(dataMessage, error => {
+        socket.send(data, error => {
             // on sending error
             if (error) {
                 // closing connection.
