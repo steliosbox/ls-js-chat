@@ -6,7 +6,7 @@ const mime = require('./my_modules/mime');
 const rootDir = './client';
 const indexFile = '/index.html';
 
-module.exports = (request, response) => {
+module.exports = (request, response, callback) => {
 
     console.log('========== new request to', request.url);
 

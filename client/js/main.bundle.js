@@ -60,229 +60,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-module.exports = function () {
-    function _class() {
-        _classCallCheck(this, _class);
-
-        this.socket = null;
-        this.ws();
-    }
-
-    _createClass(_class, [{
-        key: 'ws',
-        value: function ws() {
-            this.socket = new WebSocket('wss://ls-js-chat-steliosbox.c9users.io');
-            this.onopen();
-            this.onclose();
-        }
-    }, {
-        key: 'onopen',
-        value: function onopen() {
-            var _this = this;
-
-            this.socket.onopen = function () {
-
-                console.log('WS Server is up!');
-
-                var data = JSON.stringify({
-                    type: 'greeting'
-                });
-
-                _this.send(data);
-            };
-        }
-    }, {
-        key: 'onclose',
-        value: function onclose() {
-            var _this2 = this;
-
-            this.socket.onclose = function () {
-
-                // Try to reconnect in 5 seconds
-                console.log('Try to reconnect in 5 seconds');
-
-                setTimeout(function () {
-
-                    _this2.ws();
-                }, 5000);
-            };
-        }
-    }, {
-        key: 'send',
-        value: function send(data) {
-
-            this.socket.send(data);
-        }
-    }, {
-        key: 'onMessage',
-        value: function onMessage(callback) {
-
-            this.socket.addEventListener('message', function (event) {
-                return callback(event);
-            });
-        }
-    }]);
-
-    return _class;
-}();
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(2);
-module.exports = __webpack_require__(0);
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _comments = __webpack_require__(3);
-
-var _comments2 = _interopRequireDefault(_comments);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var WSClient = __webpack_require__(0);
-
-var ws = new WSClient();
-
-ws.onMessage(function (event) {
-
-    console.log(event);
-});
-
-new Vue({
-
-    el: '#comments',
-
-    components: {
-
-        comments: _comments2.default
-    }
-});
-
-/***/ }),
-/* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_comments_vue__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_888904be_hasScoped_false_buble_transforms_comments_comments_html__ = __webpack_require__(11);
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(4)
-}
-var normalizeComponent = __webpack_require__(9)
-/* script */
-
-/* template */
-
-/* template functional */
-  var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_comments_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_888904be_hasScoped_false_buble_transforms_comments_comments_html__["a" /* default */],
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "source/components/comments.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-888904be", Component.options)
-  } else {
-    hotAPI.reload("data-v-888904be", Component.options)
-' + '  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(5);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {"hmr":true}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(7)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-888904be\",\"scoped\":false,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!./comments.scss", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-888904be\",\"scoped\":false,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!./comments.scss");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(6)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n.comments {\n  width: 100%;\n  height: 510px;\n  background: #ccc;\n}\n.comments__list {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n  height: 100%;\n  overflow: auto;\n}\n.comments__item {\n  padding: 10px;\n  background: #fff;\n}\n.comments__image {\n  float: left;\n  width: 45px;\n  height: 45px;\n  border-radius: 10px;\n  overflow: hidden;\n}\n.comments__content {\n  float: left;\n  margin-left: 10px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 6 */
 /***/ (function(module, exports) {
 
 /*
@@ -364,7 +146,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 7 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -420,7 +202,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(8);
+var	fixUrls = __webpack_require__(10);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -736,102 +518,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-
-/**
- * When source maps are enabled, `style-loader` uses a link element with a data-uri to
- * embed the css on the page. This breaks all relative urls because now they are relative to a
- * bundle instead of the current page.
- *
- * One solution is to only use full urls, but that may be impossible.
- *
- * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
- *
- * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
- *
- */
-
-module.exports = function (css) {
-  // get current location
-  var location = typeof window !== "undefined" && window.location;
-
-  if (!location) {
-    throw new Error("fixUrls requires window.location");
-  }
-
-	// blank or null?
-	if (!css || typeof css !== "string") {
-	  return css;
-  }
-
-  var baseUrl = location.protocol + "//" + location.host;
-  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
-
-	// convert each url(...)
-	/*
-	This regular expression is just a way to recursively match brackets within
-	a string.
-
-	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
-	   (  = Start a capturing group
-	     (?:  = Start a non-capturing group
-	         [^)(]  = Match anything that isn't a parentheses
-	         |  = OR
-	         \(  = Match a start parentheses
-	             (?:  = Start another non-capturing groups
-	                 [^)(]+  = Match anything that isn't a parentheses
-	                 |  = OR
-	                 \(  = Match a start parentheses
-	                     [^)(]*  = Match anything that isn't a parentheses
-	                 \)  = Match a end parentheses
-	             )  = End Group
-              *\) = Match anything and then a close parens
-          )  = Close non-capturing group
-          *  = Match anything
-       )  = Close capturing group
-	 \)  = Match a close parens
-
-	 /gi  = Get all matches, not the first.  Be case insensitive.
-	 */
-	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
-		// strip quotes (if they exist)
-		var unquotedOrigUrl = origUrl
-			.trim()
-			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
-			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
-
-		// already a full url? no change
-		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/)/i.test(unquotedOrigUrl)) {
-		  return fullMatch;
-		}
-
-		// convert the url to a full url
-		var newUrl;
-
-		if (unquotedOrigUrl.indexOf("//") === 0) {
-		  	//TODO: should we add protocol?
-			newUrl = unquotedOrigUrl;
-		} else if (unquotedOrigUrl.indexOf("/") === 0) {
-			// path should be relative to the base url
-			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
-		} else {
-			// path should be relative to current directory
-			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
-		}
-
-		// send back the fixed url(...)
-		return "url(" + JSON.stringify(newUrl) + ")";
-	});
-
-	// send back the fixed css
-	return fixedCss;
-};
-
-
-/***/ }),
-/* 9 */
+/* 2 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -940,42 +627,520 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 10 */
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+module.exports = function () {
+    function _class() {
+        _classCallCheck(this, _class);
+
+        this.socket = null;
+        this.ws();
+    }
+
+    _createClass(_class, [{
+        key: 'ws',
+        value: function ws() {
+            this.socket = new WebSocket('wss://ls-js-chat-steliosbox.c9users.io:8080');
+            this.onopen();
+            this.onclose();
+        }
+    }, {
+        key: 'onopen',
+        value: function onopen(callback) {
+
+            this.socket.onopen = function () {
+
+                console.log('WS Server is up!');
+
+                callback ? callback() : '';
+            };
+        }
+    }, {
+        key: 'onclose',
+        value: function onclose() {
+            var _this = this;
+
+            this.socket.onclose = function () {
+
+                // Try to reconnect in 5 seconds
+                console.log('Try to reconnect in 5 seconds');
+
+                setTimeout(function () {
+
+                    _this.ws();
+                }, 5000);
+            };
+        }
+    }, {
+        key: 'send',
+        value: function send(data) {
+
+            this.socket.send(data);
+        }
+    }, {
+        key: 'onMessage',
+        value: function onMessage(callback) {
+
+            this.socket.addEventListener('message', function (event) {
+                return callback(event);
+            });
+        }
+    }]);
+
+    return _class;
+}();
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+module.exports = function () {
+    function _class() {
+        _classCallCheck(this, _class);
+    }
+
+    _createClass(_class, [{
+        key: 'set',
+        value: function set(name, value, expires) {
+
+            this.cookieExpires = null;
+            this.date = null;
+
+            // if expires was passed by user...
+            if (expires) {
+                // Get corrent date
+                this.date = new Date();
+                // by default sets days
+                this.date.setDate(this.date.getDate() + expires);
+                this.cookieExpires = '; expires=' + this.date.toGMTString();
+            }
+
+            document.cookie = name + '=' + value + this.cookieExpires;
+        }
+    }, {
+        key: 'get',
+        value: function get(name) {
+
+            this.cookiesList = {};
+            this.allCookies = document.cookie.split(';');
+            this.splitedCookies = null;
+
+            for (var i = 0; i < this.allCookies.length; i++) {
+
+                this.splitedCookies = this.allCookies[i].split('=');
+
+                if (this.splitedCookies.length > 1) {
+
+                    this.cookiesList[this.splitedCookies[0].trim()] = this.splitedCookies[1];
+                }
+            }
+
+            return name === undefined ? this.cookiesList : this.cookiesList[name];
+        }
+    }, {
+        key: 'remove',
+        value: function remove(name) {
+
+            this.set(name, '', -1);
+        }
+    }]);
+
+    return _class;
+}();
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(6);
+__webpack_require__(4);
+__webpack_require__(3);
+__webpack_require__(18);
+module.exports = __webpack_require__(19);
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _comments = __webpack_require__(7);
+
+var _comments2 = _interopRequireDefault(_comments);
+
+var _friends = __webpack_require__(13);
+
+var _friends2 = _interopRequireDefault(_friends);
+
+var _wsClient = __webpack_require__(3);
+
+var _wsClient2 = _interopRequireDefault(_wsClient);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Cookies = __webpack_require__(4);
+var cookie = new Cookies();
+
+var auth = cookie.get('auth');
+
+if (!auth) {
+
+    var person = prompt('Please enter your name', '');
+
+    if (person !== null) {
+
+        auth = person;
+        cookie.set('auth', person, 30);
+    } else {
+
+        auth = 'Guest';
+    }
+}
+
+var wsClient = new _wsClient2.default(auth);
+
+new Vue({
+
+    el: '#chat',
+
+    data: {
+        username: auth,
+        wsClient: wsClient
+    },
+
+    components: {
+        comments: _comments2.default,
+        friends: _friends2.default
+    }
+});
+
+/***/ }),
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-//
-//
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_comments_comments_js__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_888904be_hasScoped_false_buble_transforms_comments_comments_html__ = __webpack_require__(12);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(8)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+/* template */
 
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_comments_comments_js__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_888904be_hasScoped_false_buble_transforms_comments_comments_html__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "source/components/comments.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-888904be", Component.options)
+  } else {
+    hotAPI.reload("data-v-888904be", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(9);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {"hmr":true}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(1)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-888904be\",\"scoped\":false,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!./comments.scss", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-888904be\",\"scoped\":false,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!./comments.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.comments {\n  width: 100%;\n  height: 490px;\n  background: #ccc;\n}\n.comments__list {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n  height: 100%;\n  overflow: auto;\n}\n.comments__item {\n  padding: 10px;\n  background: #fff;\n}\n.comments__image {\n  float: left;\n  width: 45px;\n  height: 45px;\n  border-radius: 10px;\n  overflow: hidden;\n}\n.comments__content {\n  float: left;\n  margin-left: 10px;\n}\n.typing {\n  width: 100%;\n  height: 20px;\n  line-height: 20px;\n  background: #ccc;\n  color: #222;\n  padding-left: 10px;\n}\n.message {\n  height: 50px;\n  padding: 10px;\n}\n.message__input {\n  width: 100%;\n  height: 100%;\n  padding: 0 5px;\n  outline: 0;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
+
+/***/ }),
+/* 11 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
 
     data() {
 
         return {
 
-            list: [{ username: 'hello Vue.js 1' }, { username: 'hello Vue.js 2' }, { username: 'hello Vue.js 3' }]
+            list: [],
+            typing: '',
+            correntUser: this.$parent.username,
+            wsClient: this.$parent.wsClient
         };
+    },
+
+    mounted: function () {
+
+        this.wsClient.onopen(() => {
+
+            this.sendData({
+                type: 'echo'
+            });
+        });
+
+        this.wsClient.onMessage(event => {
+
+            this.messageType(event.data);
+        });
     },
 
     methods: {
 
-        mounted: function () {
+        messageType(messageData) {
 
-            console.log("mouted");
+            let result = JSON.parse(messageData);
+
+            switch (result.type) {
+
+                case 'message':
+
+                    if (result.username !== this.correntUser) {
+
+                        this.list.push(result);
+                        this.scrollTop();
+                    }
+                    break;
+
+                case 'typing':
+
+                    if (result.username !== this.correntUser) {
+
+                        this.typingFunc(result.username);
+                    }
+                    break;
+            }
+        },
+
+        typingFunc(username) {
+
+            clearTimeout(this.timer);
+
+            this.typing = username + ' is typing ...';
+            this.timer = setTimeout(() => {
+
+                this.typing = '';
+            }, 1000);
+        },
+
+        scrollTop() {
+
+            this.$nextTick(() => {
+
+                let elem = this.$el.querySelector('.comments__list');
+                elem.scrollTop = elem.scrollHeight;
+            });
         },
 
         submitMessage(e) {
 
             if (e.keyCode === 13) {
-                // console.log(e.keyCode);
-                this.list.push({ username: 'hello Vue.js' });
+
+                this.sendData({
+                    type: 'message',
+                    message: e.target.value
+                }, true);
+
+                return e.target.value = '';
             }
+
+            this.sendData({
+                type: 'typing'
+            });
+        },
+
+        sendData(data, push) {
+
+            data.time = Date.now();
+            data.username = this.correntUser;
+
+            if (push) {
+
+                this.list.push(data);
+                this.scrollTop();
+            }
+
+            this.wsClient.send(JSON.stringify(data));
         }
     }
 });
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -998,17 +1163,21 @@ var render = function() {
                   _vm._v(_vm._s(item.username))
                 ]),
                 _vm._v(" "),
-                _c("span", { staticClass: "comments__time" }, [_vm._v("time")])
+                _c("span", { staticClass: "comments__time" }, [
+                  _vm._v(_vm._s(item.time))
+                ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "comments__message" }, [
-                _vm._v("message")
+                _vm._v(_vm._s(item.message))
               ])
             ])
           ])
         })
       )
     ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "typing" }, [_vm._v(_vm._s(this.typing))]),
     _vm._v(" "),
     _c("div", { staticClass: "message" }, [
       _c("input", {
@@ -1038,6 +1207,362 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-888904be", esExports)
   }
 }
+
+/***/ }),
+/* 13 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_friends_friends_js__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_aa672810_hasScoped_false_buble_transforms_friends_friends_html__ = __webpack_require__(17);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(14)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+/* template */
+
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_friends_friends_js__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_aa672810_hasScoped_false_buble_transforms_friends_friends_html__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "source/components/friends.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-aa672810", Component.options)
+  } else {
+    hotAPI.reload("data-v-aa672810", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(15);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {"hmr":true}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(1)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-aa672810\",\"scoped\":false,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!./friends.scss", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-aa672810\",\"scoped\":false,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!./friends.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.friends {\n  float: left;\n}\n.friends {\n  width: 200px;\n  height: 100%;\n  overflow: auto;\n  background: #4d394b;\n  color: #939393;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 16 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+
+    data() {
+
+        return {
+            friends: [],
+            auth: this.$parent.username,
+            wsClient: this.$parent.wsClient
+        };
+    },
+
+    mounted: function () {
+
+        this.wsClient.onMessage(event => {
+
+            let result = JSON.parse(event.data);
+
+            if (result.type === 'onlineStatus') {
+
+                this.friends = this.friends.filter(friend => {
+
+                    return friend.username !== result.username;
+                });
+
+                this.friends.push(result);
+            }
+        });
+
+        this.todo(this);
+    },
+
+    methods: {
+
+        todo: self => {
+
+            setInterval(() => {
+
+                self.friends.forEach((friend, index) => {
+                    if (Date.now() - friend.time > 30000) {
+                        self.friends.splice(index, 1);
+                    }
+                });
+            }, 30000);
+        }
+    }
+});
+
+/***/ }),
+/* 17 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "ul",
+    { staticClass: "friends__list" },
+    _vm._l(_vm.friends, function(friend) {
+      return _c("li", { staticClass: "friends__item" }, [
+        _vm._v(_vm._s(friend.username))
+      ])
+    })
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-aa672810", esExports)
+  }
+}
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    data: function data() {
+
+        return {
+
+            list: [],
+            typing: '',
+            correntUser: this.$parent.username,
+            wsClient: this.$parent.wsClient
+        };
+    },
+
+
+    mounted: function mounted() {
+        var _this = this;
+
+        this.wsClient.onopen(function () {
+
+            _this.sendData({
+                type: 'echo'
+            });
+        });
+
+        this.wsClient.onMessage(function (event) {
+
+            _this.messageType(event.data);
+        });
+    },
+
+    methods: {
+        messageType: function messageType(messageData) {
+
+            var result = JSON.parse(messageData);
+
+            switch (result.type) {
+
+                case 'message':
+
+                    if (result.username !== this.correntUser) {
+
+                        this.list.push(result);
+                        this.scrollTop();
+                    }
+                    break;
+
+                case 'typing':
+
+                    if (result.username !== this.correntUser) {
+
+                        this.typingFunc(result.username);
+                    }
+                    break;
+            }
+        },
+        typingFunc: function typingFunc(username) {
+            var _this2 = this;
+
+            clearTimeout(this.timer);
+
+            this.typing = username + ' is typing ...';
+            this.timer = setTimeout(function () {
+
+                _this2.typing = '';
+            }, 1000);
+        },
+        scrollTop: function scrollTop() {
+            var _this3 = this;
+
+            this.$nextTick(function () {
+
+                var elem = _this3.$el.querySelector('.comments__list');
+                elem.scrollTop = elem.scrollHeight;
+            });
+        },
+        submitMessage: function submitMessage(e) {
+
+            if (e.keyCode === 13) {
+
+                this.sendData({
+                    type: 'message',
+                    message: e.target.value
+                }, true);
+
+                return e.target.value = '';
+            }
+
+            this.sendData({
+                type: 'typing'
+            });
+        },
+        sendData: function sendData(data, push) {
+
+            data.time = Date.now();
+            data.username = this.correntUser;
+
+            if (push) {
+
+                this.list.push(data);
+                this.scrollTop();
+            }
+
+            this.wsClient.send(JSON.stringify(data));
+        }
+    }
+};
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    data: function data() {
+
+        return {
+            friends: [],
+            auth: this.$parent.username,
+            wsClient: this.$parent.wsClient
+        };
+    },
+
+
+    mounted: function mounted() {
+        var _this = this;
+
+        this.wsClient.onMessage(function (event) {
+
+            var result = JSON.parse(event.data);
+
+            if (result.type === 'onlineStatus') {
+
+                _this.friends = _this.friends.filter(function (friend) {
+
+                    return friend.username !== result.username;
+                });
+
+                _this.friends.push(result);
+            }
+        });
+
+        this.todo(this);
+    },
+
+    methods: {
+
+        todo: function todo(self) {
+
+            setInterval(function () {
+
+                self.friends.forEach(function (friend, index) {
+                    if (Date.now() - friend.time > 30000) {
+                        self.friends.splice(index, 1);
+                    }
+                });
+            }, 30000);
+        }
+    }
+};
 
 /***/ })
 /******/ ]);

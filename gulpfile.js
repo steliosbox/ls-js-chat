@@ -13,8 +13,8 @@ const paths = {
     source: './source',
     dest: './clieny',
     scripts: {
-        watch: ['./source/**/*.js', './source/components/**/*.*'],
-        src: './source/**/*.js',
+        watch: ['./source/**/*.*', './source/**/**/*.*'],
+        src: ['./source/**/*.js', './source/**/**/*.js'],
         dest: 'client/js'
     },
     styles: {

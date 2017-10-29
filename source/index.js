@@ -1,25 +1,42 @@
 'use strict';
 
-const WSClient = require("./my_modules/ws-client.js");
+const Cookies = require("./my_modules/cookies.js");
+const cookie = new Cookies();
 
-let ws = new WSClient();
+let auth = cookie.get('auth');
 
+if (!auth) {
 
-ws.onMessage((event) => {
+    let person = prompt('Please enter your name', '');
 
-    console.log(event);
-});
+    if (person !== null) {
 
+        auth = person;
+        cookie.set('auth', person, 30);
+
+    } else {
+
+        auth = 'Guest';
+    }
+}
 
 import comments from './components/comments.vue';
+import friends from './components/friends.vue';
+import WsClient from './my_modules/ws-client.js'
+
+let wsClient = new WsClient(auth);
 
 new Vue({
 
-    el: '#comments',
+    el: '#chat',
+
+    data: {
+        username: auth,
+        wsClient: wsClient
+    },
 
     components: {
-
-        comments: comments
+        comments: comments,
+        friends: friends
     }
 });
-

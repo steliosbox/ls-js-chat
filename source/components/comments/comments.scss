@@ -1,6 +1,6 @@
 .comments {
     width: 100%;
-    height: 510px;
+    height: 490px;
     background: #ccc;
 }
 .comments__list {
@@ -24,4 +24,23 @@
 .comments__content {
     float: left;
     margin-left: 10px;
+}
+.typing {
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    background: #ccc;
+    color: #222;
+    padding-left: 10px;
+}
+
+.message {
+    height: 50px;
+    padding: 10px;
+}
+.message__input {
+    width: 100%;
+    height: 100%;
+    padding: 0 5px;
+    outline: 0;
 }

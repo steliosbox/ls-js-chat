@@ -9,22 +9,18 @@ module.exports = class {
     }
 
     ws() {
-        this.socket = new WebSocket('wss://ls-js-chat-steliosbox.c9users.io');
+        this.socket = new WebSocket('wss://ls-js-chat-steliosbox.c9users.io:8080');
         this.onopen();
         this.onclose();
     }
 
-    onopen() {
+    onopen(callback) {
 
         this.socket.onopen = () => {
 
             console.log('WS Server is up!');
 
-            let data = JSON.stringify({
-                type: 'greeting'
-            });
-
-            this.send(data);
+            callback ? callback() : '';
         };
     }
 
